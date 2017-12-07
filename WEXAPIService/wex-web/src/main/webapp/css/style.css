@@ -1,0 +1,79 @@
+.body
+{
+	background:#3c3c3c;
+}
+.greenStyle, .redStyle, .noStyle{
+	transition-duration:1s;
+}
+
+.greenStyle{
+	color:#0ede0e !important;
+}
+
+.redStyle{
+	color:#d62a2a !important;
+}
+
+.noStyle{
+	color:white;
+	font-familiy:Arial,sans !important;
+}
+
+.calcGrid {
+	bordeR:1px solid lightgray;
+	position:absolute;
+	bottom:10px;
+}
+
+.calcGrid tr,.calcGrid td{
+	border:none !important;
+}
+
+.calcGrid tr:first-of-type td{
+	font-size:12px;
+	color:#252525;
+	text-decoration:underline
+}
+
+.calcGrid tr:last-of-type{
+	color:black;
+	text-decoration:underline;
+}
+.calcGrid tr:last-of-type td {
+	padding-top:10px;
+	font-weight:bold;
+}
+
+.ui-inputfield{
+	border:none !important;
+	box-shadow:none !important;
+	border-bottom:2px solid #848484 !important;
+}
+
+.tickerGrid{
+	margin-top:10px;
+	border:1px solid lightgray;
+}
+
+.tickerGrid tr{
+	border:none;
+}
+.tickerGrid td{
+	border:none !important;
+	width:100px;
+	background:#151515;
+	color:white;
+}
+
+.tickerGrid tr:first-of-type{
+	font-size:10px;
+	border-bottom:1px solid #313131;
+}
+
+.tickerGrid td:first-of-type{
+	border-right:1px solid #656565 !important;
+}
+
+.tickerGrid tr:last-of-type td{
+	padding-top: 10px !important;
+}

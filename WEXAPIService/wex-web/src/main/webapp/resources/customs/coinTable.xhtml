@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="coin" />
+	<composite:attribute name="channel" />
+</composite:interface>
+
+
+<p:panelGrid id="overviewGrid" class="tickerGrid">
+	<p:row>
+		<p:column>
+			<p:outputLabel value="SYMBOL" />
+		</p:column>
+		<p:column>
+			<p:outputLabel value="BUY" />
+		</p:column>
+		<p:column>
+			<p:outputLabel value="LAST" />
+		</p:column>
+		<p:column>
+			<p:outputLabel value="SELL" />
+		</p:column>
+		<p:column>
+			<p:outputLabel value="FPU" />
+		</p:column>
+		<p:column>
+			<p:outputLabel value="BSDIFF" />
+		</p:column>
+	</p:row>
+	<p:row>
+		<p:column>
+			<p:outputLabel value="#{cc.attrs.coin}" />
+		</p:column>
+		<p:column class="buyColumn">
+			<p:outputLabel />
+		</p:column>
+		<p:column class="lastColumn">
+			<p:outputLabel />
+		</p:column>
+		<p:column class="sellColumn">
+			<p:outputLabel />
+		</p:column>
+		<p:column class="fpuColumn">
+			<p:outputLabel />
+		</p:column>
+		<p:column class="bsDiffColumn">
+			<p:outputLabel />
+		</p:column>
+	</p:row>
+</p:panelGrid>
+<p:socket onMessage="updateTicker" channel="#{cc.attrs.channel}" />
+
+
+</html>

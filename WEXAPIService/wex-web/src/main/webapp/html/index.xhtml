@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:customs="http://java.sun.com/jsf/composite/customs">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<script type="text/javascript" src="../js/general.js"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" />
+</h:head>
+<body class="body">
+	<h:form id="form" prependId="false">
+<customs:coinTable id="btc_usdGrid" coin="btc_usd"
+			channel="/updateBTCTrade" />
+		<customs:coinTable id="ltc_usdGrid" coin="ltc_usd"
+			channel="/updateLTCTrade" />
+			<customs:coinTable id="nmc_usdGrid" coin="nmc_usd"
+			channel="/updateNMCTrade" />
+			<customs:coinTable id="ppc_usdGrid" coin="ppc_usd"
+			channel="/updatePPCTrade" />
+			<customs:coinTable id="nvc_usdGrid" coin="nvc_usd"
+			channel="/updateNVCTrade" />
+
+	</h:form>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  -->
+<!-- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!-- <html xmlns="http://www.w3.org/1999/xhtml" -->
+<!-- 	xmlns:ui="http://java.sun.com/jsf/facelets" -->
+<!-- 	xmlns:h="http://java.sun.com/jsf/html" -->
+<!-- 	xmlns:f="http://java.sun.com/jsf/core" -->
+<!-- 	xmlns:p="http://primefaces.org/ui" -->
+<!-- 	xmlns:customs="http://java.sun.com/jsf/composite/customs"> -->
+
+<!-- <h:head> -->
+<!-- 	<link rel="stylesheet" type="text/css" href="css/style.css" /> -->
+<!-- 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+<!-- 	<script type="text/javascript" src="./js/Chart.min.js"></script> -->
+<!-- 	<script type="text/javascript" src="./js/myChart.js"></script> -->
+<!-- </h:head> -->
+<!-- <body class="body" onload="createChart('ETH','ethChart',20,'minute','0.5'),createChart('LTC','ltcChart',20,'minute','0.2')"> -->
+<!-- 	<h:form id="form"> -->
+<!-- 		<p:panelGrid class="tradesGrid"> -->
+
+<!-- 			<p:row> -->
+<!-- 				<p:column> -->
+<!-- 					<customs:coinTable coin="ETH" -->
+<!-- 						tradesList="#{initialContextController.lastETHTrades}" -->
+<!-- 						lastSellPrice="#{initialContextController.lastETHSellPrice}" -->
+<!-- 						lastBuyPrice="#{initialContextController.lastETHBuyPrice}" -->
+<!-- 						channel="/updateETHTrade" /> -->
+						
+<!-- 				</p:column> -->
+<!-- 				<p:column> -->
+<!-- 					<customs:coinTable coin="LTC" -->
+<!-- 						tradesList="#{initialContextController.lastLTCTrades}" -->
+<!-- 						lastSellPrice="#{initialContextController.lastLTCSellPrice}" -->
+<!-- 						lastBuyPrice="#{initialContextController.lastLTCBuyPrice}" -->
+<!-- 						channel="/updateLTCTrade" /> -->
+						
+<!-- 				</p:column> -->
+<!-- <!-- 				<p:column> --> -->
+<!-- <!-- 					<customs:coinTable coin="PPC" --> -->
+<!-- <!-- 						tradesList="#{initialContextController.lastPPCTrades}" --> -->
+<!-- <!-- 						lastSellPrice="#{initialContextController.lastPPCSellPrice}" --> -->
+<!-- <!-- 						lastBuyPrice="#{initialContextController.lastPPCBuyPrice}" --> -->
+<!-- <!-- 						channel="/updatePPCTrade" /> --> -->
+<!-- <!-- 				</p:column> --> -->
+<!-- <!-- 				<p:column> --> -->
+<!-- <!-- 					<customs:coinTable coin="NMC" --> -->
+<!-- <!-- 						tradesList="#{initialContextController.lastNMCTrades}" --> -->
+<!-- <!-- 						lastSellPrice="#{initialContextController.lastNMCSellPrice}" --> -->
+<!-- <!-- 						lastBuyPrice="#{initialContextController.lastNMCBuyPrice}" --> -->
+<!-- <!-- 						channel="/updateNMCTrade" /> --> -->
+<!-- <!-- 				</p:column> --> -->
+				
+<!-- 			</p:row> -->
+<!-- 			</p:panelGrid> -->
+<!-- 			<p:panelGrid class="chartGrid"> -->
+<!-- 			<p:row> -->
+<!-- 				<p:column>  -->
+<!-- 					<canvas style="width:400px !important; height:200px" id="ethChart"></canvas> -->
+<!-- 					<p:socket onMessage="updateChart" channel="/updateETHLast" /> -->
+<!-- 				</p:column> -->
+<!-- 				<p:column> -->
+<!-- 					<canvas style="width:400px !important; height:200px" id="ltcChart"></canvas> -->
+<!-- 					<p:socket onMessage="updateChart" channel="/updateLTCLast" /> -->
+<!-- 				</p:column> -->
+<!-- 			</p:row> -->
+
+
+<!-- 		</p:panelGrid> -->
+
+
+<!-- 	</h:form> -->
+<!-- </body> -->
+
+<!-- </html> -->
