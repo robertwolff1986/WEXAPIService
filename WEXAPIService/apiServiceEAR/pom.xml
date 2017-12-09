@@ -67,5 +67,13 @@
             <version>0.1</version>
             <type>ejb</type>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/jboss/jboss-client -->
+<dependency>
+    <groupId>jboss</groupId>
+    <artifactId>jboss-client</artifactId>
+    <version>4.0.2</version>
+</dependency>
+
+        
     </dependencies>
 </project>

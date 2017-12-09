@@ -1,6 +1,10 @@
 package org.wolffr.wex.api;
 
 import java.util.Arrays;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -22,32 +26,24 @@ public class MainMonitor {
 
 	@PostConstruct
 	private void init() {
-		for(Symbol symbol : Arrays.asList(Symbol.values())) {
-			Thread tickerThread = new Thread(createTickerTask(symbol.getSymbol()));
-			tickerThread.start();
-			Thread depthThread = new Thread(crateDepthTask(symbol.getSymbol()));
-			depthThread.start();
+		for (Symbol symbol : Arrays.asList(Symbol.values())) {
+			ScheduledExecutorService tickerExecutorService = Executors.newScheduledThreadPool(1);
+			tickerExecutorService.scheduleAtFixedRate(createTickerTask(symbol.getSymbol()), 5, 5, TimeUnit.SECONDS);
+			ScheduledExecutorService depthExecutorService = Executors.newScheduledThreadPool(1);
+			depthExecutorService.scheduleAtFixedRate(crateDepthTask(symbol.getSymbol()), 5, 5, TimeUnit.SECONDS);
 		}
 	}
 
 	private Runnable createTickerTask(String symbol) {
 		Runnable task = () -> {
-			try {
-				new CoinMonitor(symbol, tickerStore).monitor();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			new CoinMonitor(symbol, tickerStore).monitor();
 		};
 		return task;
 	}
-	
+
 	private Runnable crateDepthTask(String symbol) {
 		Runnable task = () -> {
-			try {
 				new DepthMonitor(symbol, depthStore).monitor();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		};
 		return task;
 	}

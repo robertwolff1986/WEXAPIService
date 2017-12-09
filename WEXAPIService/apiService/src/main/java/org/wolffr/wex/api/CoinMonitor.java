@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.bson.json.JsonParseException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.wolffr.wex.common.mongo.ticker.SingleTicker;
 import org.wolffr.wex.mongo.TickerStore;
 
@@ -11,6 +13,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CoinMonitor {
+	private static final Logger LOGGER = LoggerFactory.getLogger(CoinMonitor.class);
 
 	private TickerStore tickerStore;
 	private String symbol;
@@ -21,14 +24,14 @@ public class CoinMonitor {
 		this.tickerStore = tickerStore;
 	}
 
-	public void monitor() throws InterruptedException {
+	public void monitor() {
 		try {
-			consumeTicker(getRecentTicker());
+			LOGGER.info("Monitor: " + symbol);
 			Thread.sleep(2000);
+			consumeTicker(getRecentTicker());
 			monitor();
 		} catch (Exception e) {
 			e.printStackTrace();
-			Thread.sleep(250);
 			monitor();
 		}
 	}

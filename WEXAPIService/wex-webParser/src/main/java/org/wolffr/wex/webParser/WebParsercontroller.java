@@ -1,6 +1,9 @@
 package org.wolffr.wex.webParser;
 
-import java.io.IOException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -17,17 +20,13 @@ public class WebParsercontroller {
 	
 	@PostConstruct
 	public void init() throws Exception {
-		Thread boxParserThread= new Thread(parseTrollbox());
-		boxParserThread.start();
+		ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+		executorService.scheduleAtFixedRate(parseTrollbox(), 5, 5, TimeUnit.SECONDS);
 	}
 	
 	private Runnable parseTrollbox() {
 		Runnable task = () -> {
-			try {
 				boxParser.run();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} 
 		};
 		return task;
 	}

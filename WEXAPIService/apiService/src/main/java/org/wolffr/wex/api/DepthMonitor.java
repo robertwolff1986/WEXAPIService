@@ -21,14 +21,13 @@ public class DepthMonitor {
 		this.depthStore = depthStore;
 	}
 
-	public void monitor() throws InterruptedException {
+	public void monitor()  {
 		try {
-			consumeDepth(getCurrentDepth());
 			Thread.sleep(2000);
+			consumeDepth(getCurrentDepth());
 			monitor();
 		} catch (Exception e) {
 			e.printStackTrace();
-			Thread.sleep(250);
 			monitor();
 		}
 	}

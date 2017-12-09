@@ -36,16 +36,16 @@ public class BoxParser {
 	private Map<Integer, ChatMsg> msgMap = new TreeMap<>();
 	private List<String> vipList;
 
-	public void run() throws InterruptedException {
+	public void run()  {
 
 		try {
+			LOGGER.info("Check Box");
 			if (vipList == null)
 				initializeVipList();
+			Thread.sleep(5000);
 			check();
-			Thread.sleep(500);
 			run();
 		} catch (Exception e) {
-			Thread.sleep(500);
 			run();
 		}
 	}

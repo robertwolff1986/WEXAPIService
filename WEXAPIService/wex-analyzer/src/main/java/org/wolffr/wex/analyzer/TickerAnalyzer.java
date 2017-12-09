@@ -3,6 +3,7 @@ package org.wolffr.wex.analyzer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,10 +20,13 @@ public class TickerAnalyzer {
 	@EJB
 	private MailService mailService;
 
-	private static final Double oneMinuteSwingPercentToNotify = 2.0;
-	private static final Double tenMinuteSwingPercentToNotify = 8.0;
-	Map<String, List<SpecificTicker>> tenMinuteTickerMap = new ConcurrentHashMap<>();
-	Map<String, List<SpecificTicker>> oneMinuteTickerMap = new ConcurrentHashMap<>();
+	private static final Double oneMinuteSwingPercentToNotify = 3.0;
+	private static final Double tenMinuteSwingPercentToNotify = 10.0;
+	private static final Integer MAILREPEATRATE=5;
+	private Map<String, List<SpecificTicker>> tenMinuteTickerMap = new ConcurrentHashMap<>();
+	private Map<String, List<SpecificTicker>> oneMinuteTickerMap = new ConcurrentHashMap<>();
+	
+	private Map<String,LocalDateTime> lastMailMap=new HashMap<>();
 
 	public void analyzeTicker(SpecificTicker ticker) {
 		addTickerToTickerMap(tenMinuteTickerMap, ticker);
@@ -37,12 +41,21 @@ public class TickerAnalyzer {
 
 		Double percentSwing = (Double.valueOf(currentTicker.getLast()) - Double.valueOf(oldestTicker.getLast()))
 				/ (Double.valueOf(oldestTicker.getLast()) / 100.0);
-		if(Math.abs(percentSwing)>swingToNotify)
+		if(Math.abs(percentSwing)>swingToNotify && canSendMail(currentTicker.getSymbol()))
+		{
 			sendNotificationMail(currentTicker.getSymbol(), percentSwing, oldestTicker.getLast(),currentTicker.getLast());
+		}
+	}
+
+	private boolean canSendMail(String symbol) {
+		if(lastMailMap.get(symbol)==null)
+			return true;
+		return LocalDateTime.now().isAfter(lastMailMap.get(symbol).plusMinutes(MAILREPEATRATE));
 	}
 
 	private void sendNotificationMail(String symbol, Double percentSwing, String old, String current) {
 		mailService.sendPercentSwingMail(symbol,percentSwing,old,current);
+		lastMailMap.put(symbol, LocalDateTime.now());
 	}
 
 	private void addTickerToTickerMap(Map<String, List<SpecificTicker>> tickerMap, SpecificTicker ticker) {
